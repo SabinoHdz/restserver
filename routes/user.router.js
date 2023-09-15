@@ -11,6 +11,8 @@ const {
   getUserSchema,
 } = require("./../dtos/user.dto");
 const { validatorHandler } = require("./../middlewares/validator.handler");
+const { validarJWT } = require("../middlewares/validar-jwt");
+const { isAdminRole, hasRole } = require("../middlewares/validar-roles");
 
 const router = express.Router();
 router.get("/", getUsers);
@@ -22,6 +24,13 @@ router.put(
   userPut
 );
 //router.patch("/", getUsers);
-router.delete("/:id", validatorHandler(getUserSchema,'params'),userDelete);
+router.delete(
+  "/:id",
+  validarJWT,
+  hasRole('USER_ROLE','ADMIN_ROLE','SALES_ROLE'),
+  isAdminRole,
+  validatorHandler(getUserSchema, "params"),
+  userDelete
+);
 
 module.exports = router;
