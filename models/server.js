@@ -24,11 +24,16 @@ class Server {
   }
 
   routes() {
+    this.app.get("/hello", (req, res) => {
+      res.status(200).json({
+        name:'sabino'
+      })
+    });
     routerApi(this.app);
   }
 
   listen() {
-    this.app.listen(this.port, () => {
+    this.server = this.app.listen(this.port, () => {
       console.log("Servidor corriendo en el puertoS", this.port);
     });
   }
@@ -37,7 +42,7 @@ class Server {
     this.app.use(cors());
     //lectura y parseo
     this.app.use(express.json());
-    this.app.use(express.static('public'))
+    this.app.use(express.static("public"));
   }
   async conectarDataBase() {
     await dbConecction();
