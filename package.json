@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "e2e": "jest --config ./jest-e2e.json --verbose  --detectOpenHandles --forceExit"
+    "e2e": "jest --config ./jest-e2e.json --verbose  --detectOpenHandles --forceExit",
+    "e2e:coverage": "jest --config ./jest-e2e.json --verbose  --detectOpenHandles --forceExit --coverage"
   },
   "keywords": [],
   "author": "",
