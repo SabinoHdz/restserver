@@ -13,7 +13,7 @@ const request = require("supertest");
 
 const Server = require("../models/server");
 
-describe("test for app", () => {
+describe("test /categorias path", () => {
   let app = null;
   let server = null;
   let api = null;
@@ -24,14 +24,28 @@ describe("test for app", () => {
     api = request(app.app);
   });
 
-  test("GET /hello", async () => {
-    const response = await api.get("/hello");
+  describe('GET /categorias',()=>{
+    //test for /categorias
+  })
+   describe("POST /categorias", () => {
+     test('deberia retorna un 400 Bad request',async()=>{
+        //AAA
+        //Arrange
+        const inputData={
+            name:223
+        }
+        //Act
+       const response=await api.post('/api/categorias').send(inputData);
 
-    expect(response).toBeTruthy();
-    expect(response.statusCode).toEqual(200);
-    expect(response.body.name).toEqual("sabino");
-    expect(response.headers["content-type"]).toMatch(/json/);
-  });
+        //Assert
+        expect(response.statusCode).toBe(400)
+
+     });
+   });
+
+   describe("PUT /categorias", () => {
+     //test for /categorias
+   });
   // afterEach(() => {
   //   server.close();
   // });
@@ -39,7 +53,7 @@ describe("test for app", () => {
   afterAll((done) => {
     app.server.close((err) => {
       if (err) {
-        //console.error("Error al cerrar el servidor:", err);
+        console.error("Error al cerrar el servidor:", err);
       } else {
         console.log("Servidor cerrado después de las pruebas");
       }

@@ -19,7 +19,7 @@ const { isAdminRole, hasRole } = require("../middlewares/validar-roles");
 const router = express.Router();
 router.get("/", validatorHandler(queryCategorySchema,"query"), getCategories);
 router.get("/:id",validatorHandler(getCategorySchema,"params"), getCategory);
-router.post("/",validarJWT, validatorHandler(createCategorySchema, "body"), createCategory);
+router.post("/", validatorHandler(createCategorySchema, "body"), createCategory);
 router.put(
   "/:id",
   validarJWT,

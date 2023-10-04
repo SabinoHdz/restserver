@@ -1,12 +1,12 @@
 function logErrors(err, req, res, next) {
   console.log("logErrors: ");
-  console.error(err);
+  //console.error(err);
   next(err);
 }
 
 function errorHandler(err, req, res, next) {
   console.log("errorHadler: ");
-  console.error(err);
+  //console.error(err);
   res.status(500).json({
     message: err.message,
     stack: err.stack,
