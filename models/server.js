@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 const routerApi = require("./../routes/index");
 const { dbConecction } = require("../database/config");
 const {
@@ -37,7 +38,17 @@ class Server {
     this.app.use(cors());
     //lectura y parseo
     this.app.use(express.json());
-    this.app.use(express.static('public'))
+    //Directorio publico
+    this.app.use(express.static("public"));
+    //Carga de archivo
+    this.app.use(
+      fileUpload({
+        useTempFiles: true,
+        tempFileDir: "/tmp/",
+        createParentPath: true,
+        limits: { fileSize: 50 * 1024 * 1024 }, // Establece el límite del tamaño del archivo a 50 MB
+      })
+    );
   }
   async conectarDataBase() {
     await dbConecction();

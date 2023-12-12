@@ -3,6 +3,7 @@ const usuariosRouter = require("./user.router");
 const categoriasRouter = require("./category.router");
 const productosRouter = require("./product.router");
 const searchRouter = require("./buscar.router");
+const uploadsRouter=require("./uploads.router")
 const authRouter = require("./auth.router");
 const { MODULE_PATH, ROUTE_NAME } = require("./../utils/const");
 function routerApi(app) {
@@ -13,6 +14,7 @@ function routerApi(app) {
   router.use("/auth", authRouter);
   router.use("/productos", productosRouter);
   router.use("/search", searchRouter);
+  router.use("/uploads",uploadsRouter)
 }
 
 module.exports = routerApi;
