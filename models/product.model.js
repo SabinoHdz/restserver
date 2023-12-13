@@ -33,6 +33,9 @@ const productSchema = Schema({
     ref: "Category",
     required: true,
   },
+  image: {
+    type: String,
+  },
 });
 productSchema.methods.toJSON = function () {
   const { __v, status, ...product } = this.toObject();
